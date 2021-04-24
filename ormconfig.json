@@ -1,8 +1,7 @@
 {
-  "username": "postgres",
-  "password": "docker",
-
   "name": "default",
+  "username": "postgres",
+  "password": "postgres",
   "type": "postgres",
   "host": "localhost",
   "port": 5432,
@@ -17,3 +16,4 @@
     "migrationsDir": "./src/database/migrations"
   }
 }
+
