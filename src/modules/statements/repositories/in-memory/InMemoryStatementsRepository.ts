@@ -32,12 +32,26 @@ export class InMemoryStatementsRepository implements IStatementsRepository {
     const statement = this.statements.filter(operation => operation.user_id === user_id);
 
     const balance = statement.reduce((acc, operation) => {
-      if (operation.type === 'deposit') {
-        return acc + operation.amount;
-      } else {
-        return acc - operation.amount;
-      }
+
+        switch(operation.type){
+            case 'deposit':
+                acc += Number(operation.amount);
+                break;
+            case 'transfer':
+                if (operation.user_id === user_id) {
+                    acc += Number(operation.amount); 
+                }
+                acc -= Number(operation.amount);
+                break;
+            case 'withdraw':
+                acc -= Number(operation.amount);
+                break;
+            default:
+                console.log("invalid operation")
+        }
+        return acc 
     }, 0)
+
 
     if (with_statement) {
       return {
@@ -47,5 +61,6 @@ export class InMemoryStatementsRepository implements IStatementsRepository {
     }
 
     return { balance }
+
   }
 }

@@ -52,8 +52,8 @@ describe("Create Statement", () => {
         Authorization: `Bearer ${token}`,
       });
 
-    expect(response.body).toHaveProperty("id");
-    expect(response.body.user_id).toEqual(user_id);
+    expect(response.body[0]).toHaveProperty("id");
+    expect(response.body[0].user_id).toEqual(user_id);
     expect(response.status).toBe(201);
   });
 
@@ -215,8 +215,8 @@ describe("Create Statement", () => {
         Authorization: `Bearer ${token}`,
         });
 
-      expect(response.body).toHaveProperty("id");
-      expect(response.body.user_id).toEqual(user_id);
+      expect(response.body[0]).toHaveProperty("id");
+      expect(response.body[0].user_id).toEqual(user_id);
       expect(response.status).toBe(201)
     });
 
